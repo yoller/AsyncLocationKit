@@ -37,7 +37,6 @@ public final class AsyncLocationManager {
     private var proxyDelegate: AsyncDelegateProxyInterface
     private var locationDelegate: CLLocationManagerDelegate
     private var desiredAccuracy: LocationAccuracy = .bestAccuracy
-    private var desiredAccuracy: LocationAccuracy = .bestAccuracy
     private var allowsBackgroundLocationUpdates: Bool = false
     
     public init() {
