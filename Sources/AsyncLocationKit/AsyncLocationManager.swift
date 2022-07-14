@@ -40,12 +40,12 @@ public final class AsyncLocationManager {
     private var allowsBackgroundLocationUpdates: Bool = false
     
     public init(locationManager: CLLocationManager = CLLocationManager()) {
-        locationManager = CLLocationManager()
+        self.locationManager = CLLocationManager()
         proxyDelegate = AsyncDelegateProxy()
         locationDelegate = LocationDelegate(delegateProxy: proxyDelegate)
-        locationManager.delegate = locationDelegate
-        locationManager.desiredAccuracy = desiredAccuracy.convertingAccuracy
-        locationManager.allowsBackgroundLocationUpdates = allowsBackgroundLocationUpdates
+        self.locationManager.delegate = locationDelegate
+        self.locationManager.desiredAccuracy = desiredAccuracy.convertingAccuracy
+        self.locationManager.allowsBackgroundLocationUpdates = allowsBackgroundLocationUpdates
     }
     
     public convenience init(locationManager: CLLocationManager = CLLocationManager(), desiredAccuracy: LocationAccuracy) {
