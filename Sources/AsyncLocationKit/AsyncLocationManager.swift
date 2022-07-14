@@ -37,6 +37,8 @@ public final class AsyncLocationManager {
     private var proxyDelegate: AsyncDelegateProxyInterface
     private var locationDelegate: CLLocationManagerDelegate
     private var desiredAccuracy: LocationAccuracy = .bestAccuracy
+    private var desiredAccuracy: LocationAccuracy = .bestAccuracy
+    private var allowsBackgroundLocationUpdates: Bool = false
     
     public init() {
         locationManager = CLLocationManager()
@@ -44,6 +46,7 @@ public final class AsyncLocationManager {
         locationDelegate = LocationDelegate(delegateProxy: proxyDelegate)
         locationManager.delegate = locationDelegate
         locationManager.desiredAccuracy = desiredAccuracy.convertingAccuracy
+        locationManager.allowsBackgroundLocationUpdates = allowsBackgroundLocationUpdates
     }
     
     public convenience init(desiredAccuracy: LocationAccuracy) {
@@ -52,7 +55,13 @@ public final class AsyncLocationManager {
     }
     
     public func updateAccuracy(with newAccuracy: LocationAccuracy) {
+        self.desiredAccuracy = newAccuracy
         locationManager.desiredAccuracy = newAccuracy.convertingAccuracy
+    }
+
+    public func updateAllowsBackgroundLocationUpdates(allows: Bool) {
+        self.allowsBackgroundLocationUpdates = allows
+        locationManager.allowsBackgroundLocationUpdates = self.allowsBackgroundLocationUpdates
     }
     
     public func requestAuthorizationWhenInUse() async -> CLAuthorizationStatus {
